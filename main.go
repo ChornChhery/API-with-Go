@@ -120,6 +120,9 @@ func main() {
 	// Endpoint for fetching users
 	http.HandleFunc("/users", getUsers)
 
+	// Add styles.css file
+	http.Handle("/style.css", http.StripPrefix("/", http.FileServer(http.Dir("."))))
+
 	// Start the server
 	fmt.Println("Server running on http://localhost:8080")
 	log.Fatal(http.ListenAndServe(":8080", nil))
